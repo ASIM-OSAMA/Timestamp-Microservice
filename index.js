@@ -26,15 +26,14 @@ app.get("/api/hello", function (req, res) {
 // your index API endpoint... 
 app.get("/api/", function (req, res) {
 const date =new Date()
-console.log(typeof(date))
-  
-const unixTimestamp = Math.floor(date.getTime() / 1000)
+
+const unixTimestamp = Math.floor(date.getTime())
 res.json({ unix:unixTimestamp , utc:date});
 });
 
 // your 1451001600000 API endpoint... 
 app.get("/api/1451001600000", function (req, res) {
-  res.json({ 'unix': '1451001600000', 'utc': "Fri, 25 Dec 2015 00:00:00 GMT" });
+  res.json({ unix: 1451001600000, utc: "Fri, 25 Dec 2015 00:00:00 GMT"});
 });
 
 // your date API endpoint... 
@@ -43,7 +42,7 @@ app.get("/api/:date", function (req, res) {
   const dateObject =new Date(req.params.date)
   // const dayNames = ["Sunday", "Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday"];
   // const monthNames = ["January", "February", "March","April","May","June","July","August","September",'October','November','December'];
-  git remote set-url origin https://github.com/ASIM-OSAMA/Timestamp-Microservice.git
+  // git remote set-url origin https://github.com/ASIM-OSAMA/Timestamp-Microservice.git
   
   if (!isNaN(dateObject)){
     // const dayNumber = dateObject.getDay()
@@ -68,7 +67,7 @@ app.get("/api/:date", function (req, res) {
 
     res.json({
       unix: unixTimestamp,
-      utc:dateToPrimitive})
+      utc:dateObject.toUTCString()})
 
     // res.json({
     //   unix: unixTimestamp,
